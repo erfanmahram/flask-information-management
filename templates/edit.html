@@ -1,0 +1,421 @@
+{% extends 'base.html' %}
+
+{% block title %}ویرایش {{ post['Id'] }}{% endblock %}
+{% block content %}
+<h1>ویرایش <span style="border-radius: 5px; background-color: orange; color:whitesmoke;">{{ post['Id'] }} - {{ post['Title'] }}:</span>
+</h1>
+<form method="POST" enctype="multipart/form-data">
+    <label for="title">عنوان</label>
+    <br>
+    <input size="100" type="text" name="title" placeholder="Post title" value="{{ post['Title'] }}"></input>
+    <br>
+    <br>
+    <label for="agent-name">نام نماینده</label>
+    <br>
+    <input size="100" type="text" name="agent-name" placeholder="نام نماینده" value="{{ post['AgentName'] }}"></input>
+    <br>
+    <br>
+    <label for="agent-phone">شماره تلفن نماینده</label>
+    <br>
+    <input type="tel" name="agent-phone" placeholder="09123456789" pattern="09[0-9]{9} + none"
+           value="{{ post['AgentPhone'] }}"></input>
+    <br>
+    <br>
+    <label for="province">استان:</label>
+    <br>
+    <input name="province" type="text" value="{{ request.form['Province'] or post['Province'] }}">
+    <br>
+    <br>
+    <label for="city">شهر:</label>
+    <br>
+    <input name="city" type="text" value="{{ request.form['City'] or post['City'] }}">
+    <br>
+    <br>
+    <label for="village">روستا:</label>
+    <br>
+    <input name="village" type="text" value="{{ request.form['Village'] or post['Village'] }}">
+    <br>
+    <br>
+    <label for="address">آدرس:</label>
+    <br>
+    <textarea name="address" placeholder="مثال: تهران - شهرک اکباتان - ساختمان 3 - واحد 5"
+              rows="5" cols="60">{{ request.form['Address'] or post['Address'] }}</textarea>
+    <br>
+    <br>
+    <label for="floor">طبقه:</label>
+    <br>
+    <input name="floor" type="number" value="{{ post['Floor']|int }}" min="-5" max="100">
+    <br>
+    <br>
+    <label for="total-floors">تعداد کل طبقات:</label>
+    <br>
+    <input name="total-floors" type="number" value="{{ post['TotalFloors']|int }}">
+    <br>
+    <br>
+    <label for="house-number">پلاک:</label>
+    <br>
+    <input name="house-number" type="number" value="{{ post['HouseNumber']|int }}" min="0" max="100">
+    <br>
+    <br>
+    <label for="postal-code">کد پستی:</label>
+    <br>
+    <input name="postal-code" type="number" pattern="[0-9]{10}" value="{{ post['PostalCode']|int }}">
+    <br>
+    <br>
+    <label for="ownership-type">نوع مالکیت:</label>
+    <br>
+    <input name="ownership-type" type="text" value="{{ request.form['OwnershipType'] or post['OwnershipType'] }}">
+    <br>
+    <br>
+    <label for="environment-type">بافت محیط:</label>
+    <br>
+    <input name="environment-type" type="text" value="{{ request.form['EnvironmentType'] or post['EnvironmentType'] }}">
+    <br>
+    <br>
+    <label for="access-path">مسیر دسترسی:</label>
+    <br>
+    <textarea name="access-path" rows="5" cols="60">{{ request.form['AccessPath'] or post['AccessPath'] }}</textarea>
+    <br>
+    <br>
+    <label for="access-description">توضیحات مسیر دسترسی:</label>
+    <br>
+    <textarea name="access-description" rows="5" cols="60">{{ post['AccessDescription'] }}</textarea>
+    <br>
+    <br>
+    <label for="neighbourhoodship">همسایگی:</label>
+    <br>
+    <input name="neighbourhoodship" type="text" value="{{ post['NeighbourhoodShip'] }}">
+    <br>
+    <br>
+    <label for="distance-to-places">توضیحات مسیر دسترسی:</label>
+    <br>
+    <textarea name="distance-to-places" rows="5">{{ post['DistanceToPlaces'] }}</textarea>
+    <br>
+    <br>
+    <label for="walls">دیوار:</label>
+    <br>
+    <input name="walls" type="text" value="{{ post['Walls'] }}">
+    <br>
+    <br>
+    <label for="unit-area">مساحت بنا:</label>
+    <br>
+    <input name="unit-area" type="number" value="{{ post['UnitArea']|int }}" min="0">
+    <br>
+    <br>
+    <label for="total-area">مساحت زمین:</label>
+    <br>
+    <input name="total-area" type="number" value="{{ post['TotalArea']|int }}" min="0">
+    <br>
+    <br>
+    <label for="capacity">ظرفیت:</label>
+    <br>
+    <input name="capacity" type="number" value="{{ post['Capacity']|int }}" min="0">
+    <br>
+    <br>
+    <label for="max-capacity">حداکثر ظرفیت:</label>
+    <br>
+    <input name="max-capacity" type="number" value="{{ post['MaxCapacity']|int }}" min="0">
+    <br>
+    <br>
+    <label for="rooms">تعداد اتاق ها:</label>
+    <br>
+    <input name="rooms" type="number" value="{{ post['Rooms']|int }}" min="0">
+    <br>
+    <br>
+    <label for="sleep-services">تعداد سرویس کف خواب:</label>
+    <br>
+    <input name="sleep-services" type="number" value="{{ post['SleepServices']|int }}" min="0">
+    <br>
+    <br>
+    <label for="single-bed">تعداد تختخواب تک نفره:</label>
+    <br>
+    <input name="single-bed" type="number" value="{{ post['SingleBed']|int }}" min="0">
+    <br>
+    <br>
+    <label for="double-bed">تعداد تختخواب دو نفره:</label>
+    <br>
+    <input name="double-bed" type="number" value="{{ post['DoubleBed']|int }}" min="0">
+    <br>
+    <br>
+    <label for="folding-sofa">تعداد مبل تختخواب شو:</label>
+    <br>
+    <input name="folding-sofa" type="number" value="{{ post['FoldingSofa']|int }}" min="0">
+    <br>
+    <br>
+    <label for="wc">تعداد سرویس بهداشتی:</label>
+    <br>
+    <input name="wc" type="number" value="{{ post['WCQuantity']|int }}" min="0">
+    <br>
+    <br>
+    <label for="sanitary-facilities">امکانات بهداشتی:</label>
+    <br>
+    <input name="sanitary-facilities" type="text" value="{{ post['SanitaryFacilities'] }}">
+    <br>
+    <br>
+    <label for="pool">استخر:</label>
+    <input name="pool" type="checkbox" {% if post['Pool'] == true %} checked{% else %}{% endif %}>
+    <label for="dry-sauna">سونا خشک:</label>
+    <input type="checkbox" name="dry-sauna" {% if post['DrySauna'] == true %} checked{% else %}{% endif %}>
+    <label for="wet-sauna">سونا بخار:</label>
+    <input type="checkbox" name="wet-sauna" {% if post['WetSauna'] == true %} checked{% else %}{% endif %}>
+    <label for="parking">پارکینگ:</label>
+    <input type="checkbox" name="parking" {% if post['Parking'] == true %} checked{% else %}{% endif %}>
+    <label for="balcony">تراس:</label>
+    <input type="checkbox" name="balcony" {% if post['Balcony'] == true %} checked{% else %}{% endif %}>
+    <label for="elders-reception">امکان پذیرش سالمندان:</label>
+    <input type="checkbox" name="elders-reception" {% if post['EldersReception'] == true %} checked{% else %}{% endif
+    %}>
+    <label for="disabled-reception">امکان پذیرش معلولین:</label>
+    <input type="checkbox" name="disabled-reception" {% if post['DisabledReception'] == true %} checked{% else %}{%
+    endif %}>
+    <label for="tv">تلویزیون:</label>
+    <input type="checkbox" name="tv" {% if post['TV'] == true %} checked{% else %}{% endif %}>
+    <label for="digital-reciever">گیرنده دیجیتالی:</label>
+    <input type="checkbox" name="digital-reciever" {% if post['DigitalReciever'] == true %} checked{% else %}{% endif
+    %}>
+    <label for="refrigerator">یخچال:</label>
+    <input type="checkbox" name="refrigerator" {% if post['Refrigerator'] == true %} checked{% else %}{% endif %}>
+    <label for="oven">اجاق گاز:</label>
+    <input type="checkbox" name="oven" {% if post['Oven'] == true %} checked{% else %}{% endif %}>
+    <label for="dining-service">سرویس غذاخوری:</label>
+    <input type="checkbox" name="dining-service" {% if post['DiningService'] == true %} checked{% else %}{% endif %}>
+    <label for="furniture">مبلمان:</label>
+    <input type="checkbox" name="furniture" {% if post['Furniture'] == true %} checked{% else %}{% endif %}>
+    <label for="vacuum-machine">جاروبرقی:</label>
+    <input type="checkbox" name="vacuum-machine" {% if post['VacuumMachine'] == true %} checked{% else %}{% endif %}>
+    <label for="persian-toilet">توالت ایرانی:</label>
+    <input type="checkbox" name="persian-toilet" {% if post['PersianToilet'] == true %} checked{% else %}{% endif %}>
+    <label for="toilet">توالت فرنگی:</label>
+    <input type="checkbox" name="toilet" {% if post['Toilet'] == true %} checked{% else %}{% endif %}>
+    <label for="bathroom">حمام:</label>
+    <input type="checkbox" name="bathroom" {% if post['Bathroom'] == true %} checked{% else %}{% endif %}>
+    <label for="dining-furniture">میز و صندلی:</label>
+    <input type="checkbox" name="dining-furniture" {% if post['DiningFurniture'] == true %} checked{% else %}{% endif
+    %}>
+    <label for="private-yard">حیاط اختصاصی:</label>
+    <input type="checkbox" name="private-yard" {% if post['PrivateYard'] == true %} checked{% else %}{% endif %}>
+    <label for="elevator">آسانسور:</label>
+    <input type="checkbox" name="elevator" {% if post['Elevator'] == true %} checked{% else %}{% endif %}>
+    <label for="evaporation-cooler">کولر آبی:</label>
+    <input type="checkbox" name="evaporation-cooler" {% if post['EvaporativeCooler'] == true %} checked{% else %}{%
+    endif %}>
+    <label for="air-conditioner">کولر گازی:</label>
+    <input type="checkbox" name="air-conditioner" {% if post['AirConditioner'] == true %} checked{% else %}{% endif %}>
+    <label for="radiator">رادیاتور:</label>
+    <input type="checkbox" name="radiator" {% if post['Radiator'] == true %} checked{% else %}{% endif %}>
+    <label for="fireplace">شومینه:</label>
+    <input type="checkbox" name="fireplace" {% if post['Fireplace'] == true %} checked{% else %}{% endif %}>
+    <label for="freewifi">وای فای رایگان:</label>
+    <input type="checkbox" name="freewifi" {% if post['FreeWifi'] == true %} checked{% else %}{% endif %}>
+    <label for="iron">اتو:</label>
+    <input type="checkbox" name="iron" {% if post['Iron'] == true %} checked{% else %}{% endif %}>
+    <label for="washing-machine">ماشین لباسشویی:</label>
+    <input type="checkbox" name="washing-machine" {% if post['WashingMachine'] == true %} checked{% else %}{% endif %}>
+    <label for="jacuzzi">جکوزی:</label>
+    <input type="checkbox" name="jacuzzi" {% if post['Jacuzzi'] == true %} checked{% else %}{% endif %}>
+    <label for="microwave">مایکروویو:</label>
+    <input type="checkbox" name="microwave" {% if post['Microwave'] == true %} checked{% else %}{% endif %}>
+    <label for="barbecue">باربیکیو:</label>
+    <input type="checkbox" name="barbecue" {% if post['Barbecue'] == true %} checked{% else %}{% endif %}>
+    <label for="bathtub">وان:</label>
+    <input type="checkbox" name="bathtub" {% if post['Bathtub'] == true %} checked{% else %}{% endif %}>
+    <label for="tea-maker">چای ساز:</label>
+    <input type="checkbox" name="tea-maker" {% if post['TeaMaker'] == true %} checked{% else %}{% endif %}>
+    <label for="boardgame">بازی فکری:</label>
+    <input type="checkbox" name="boardgame" {% if post['BoardGame'] == true %} checked{% else %}{% endif %}>
+    <label for="pingpong">پینگ پونگ:</label>
+    <input type="checkbox" name="pingpong" {% if post['PingPong'] == true %} checked{% else %}{% endif %}>
+    <label for="sound-system">سیستم صوتی:</label>
+    <input type="checkbox" name="sound-system" {% if post['SoundSystem'] == true %} checked{% else %}{% endif %}>
+    <label for="billiards">بیلیارد:</label>
+    <input type="checkbox" name="billiards" {% if post['Billiards'] == true %} checked{% else %}{% endif %}>
+    <label for="table-football">فوتبال دستی:</label>
+    <input type="checkbox" name="table-football" {% if post['TableFootball'] == true %} checked{% else %}{% endif %}>
+    <label for="game-console">کنسول بازی:</label>
+    <input type="checkbox" name="game-console" {% if post['GameConsole'] == true %} checked{% else %}{% endif %}>
+    <label for="cctv">دوربین مدار بسته:</label>
+    <input type="checkbox" name="cctv" {% if post['CCTV'] == true %} checked{% else %}{% endif %}>
+    <label for="bed">تخت خواب:</label>
+    <input type="checkbox" name="bed" {% if post['Bed'] == true %} checked{% else %}{% endif %}>
+    <label for="porch">ایوان:</label>
+    <input type="checkbox" name="porch" {% if post['Porch'] == true %} checked{% else %}{% endif %}>
+    <label for="kids-pool">استخر کودکان:</label>
+    <input type="checkbox" name="kids-pool" {% if post['KidsPool'] == true %} checked{% else %}{% endif %}>
+    <label for="cold-water-pool">حوضچه آبسرد:</label>
+    <input type="checkbox" name="cold-water-pool" {% if post['ColdWaterPool'] == true %} checked{% else %}{% endif %}>
+    <label for="air-hockey">ایر هاکی:</label>
+    <input type="checkbox" name="air-hockey" {% if post['AirHockey'] == true %} checked{% else %}{% endif %}>
+    <label for="jacuzzi-tub">وان جکوزی:</label>
+    <input type="checkbox" name="jacuzzi-tub" {% if post['JacuzziTub'] == true %} checked{% else %}{% endif %}>
+    <label for="pets">امکان ورود حیوانات خانگی:</label>
+    <input type="checkbox" name="pets" {% if post['Pets'] == true %} checked{% else %}{% endif %}>
+    <label for="seremony">امکان برگزاری مراسم:</label>
+    <input type="checkbox" name="seremony" {% if post['Seremony'] == true %} checked{% else %}{% endif %}>
+    <label for="mci-anten">آنتن همراه اول:</label>
+    <input type="checkbox" name="mci-anten" {% if post['MCIAnten'] == true %} checked{% else %}{% endif %}>
+    <label for="irancell-anten">آنتن ایرانسل:</label>
+    <input type="checkbox" name="irancell-anten" {% if post['IrancellAnten'] == true %} checked{% else %}{% endif %}>
+    <label for="mci-net">اینترنت همراه اول:</label>
+    <input type="checkbox" name="mci-net" {% if post['MCINet'] == true %} checked{% else %}{% endif %}>
+    <label for="irancell-net">اینترنت ایرانسل:</label>
+    <input type="checkbox" name="irancell-net" {% if post['IrancellNet'] == true %} checked{% else %}{% endif %}>
+    <br>
+    <br>
+    <label for="hall-facilities">امکانات اتاق پذیرایی:</label>
+    <br>
+    <input name="hall-facilities" type="text" value="{{ post['HallFacilities'] }}">
+    <br>
+    <br>
+    <label for="hall-heater">سیستم گرمایشی اتاق پذیرایی:</label>
+    <br>
+    <input name="hall-heater" type="text" value="{{ post['HallHeater'] }}">
+    <br>
+    <br>
+    <label for="hall-cooler">سیستم سرمایشی اتاق پذیرایی:</label>
+    <br>
+    <input name="hall-cooler" type="text" value="{{ post['HallCooler'] }}">
+    <br>
+    <br>
+    <label for="room-heater">سیستم گرمایشی اتاق ها:</label>
+    <br>
+    <input name="room-heater" type="text" value="{{ post['RoomHeater'] }}">
+    <br>
+    <br>
+    <label for="room-cooler">سیستم سرمایشی اتاق ها:</label>
+    <br>
+    <input name="room-cooler" type="text" value="{{ post['RoomCooler'] }}">
+    <br>
+    <br>
+    <label for="yard">حیاط:</label>
+    <br>
+    <input name="yard" type="text" value="{{ post['Yard'] }}">
+    <br>
+    <br>
+    <label for="garden">باغ:</label>
+    <br>
+    <input name="garden" type="text" value="{{ post['Garden'] }}">
+    <br>
+    <br>
+    <label for="garden-facilities">امکانات باغ:</label>
+    <br>
+    <input name="garden-facilities" type="text" value="{{ post['GardenFacilities'] }}">
+    <br>
+    <br>
+    <label for="garden-description">توضیحات باغ:</label>
+    <br>
+    <input name="garden-description" type="text" value="{{ post['GardenDescription'] }}">
+    <br>
+    <br>
+    <label for="view">چشم انداز اقامتگاه (ویو اقامتگاه):</label>
+    <br>
+    <input name="view" type="text" value="{{ post['View'] }}">
+    <br>
+    <br>
+    <label for="prosperity-facilities">امکانات رفاهی:</label>
+    <br>
+    <input name="prosperity-facilities" type="text" value="{{ post['ProsperityFacilities'] }}">
+    <br>
+    <br>
+    <label for="joy-facilities">امکانات سرگرمی:</label>
+    <br>
+    <input name="joy-facilities" type="text" value="{{ post['JoyFacilities'] }}">
+    <br>
+    <br>
+    <label for="cooking-facilities">امکانات پخت و پز:</label>
+    <br>
+    <input name="cooking-facilities" type="text" value="{{ post['CookingFacilities'] }}">
+    <br>
+    <br>
+    <label for="dishes">سرو غذا و نوشیدنی (تعداد و توضیحات ظروف):</label>
+    <br>
+    <input name="dishes" type="text" value="{{ post['Dishes'] }}">
+    <br>
+    <br>
+    <label for="entrance-steps">تعداد پله های ورودی:</label>
+    <br>
+    <input name="entrance-steps" type="number" min="0" value="{{ post['EntranceSteps']|int }}">
+    <br>
+    <br>
+    <label for="enter-hour">ساعت ورود: </label>
+    <input name="enter-hour" type="time" value="{{ post['EnterHour'] }}">
+    <br>
+    <label for="exit-hour">ساعت خروج: </label>
+    <input name="exit-hour" type="time" value="{{ post['ExitHour'] }}">
+    <br>
+    <br>
+    <label for="min-stay">حداقل مدت اقامت:</label>
+    <br>
+    <input name="min-stay" type="text" value="{{ post['MinStay'] }}">
+    <br>
+    <br>
+    <label for="max-stay">حداکثر مدت اقامت:</label>
+    <br>
+    <input name="max-stay" type="text" value="{{ post['MaxStay'] }}">
+    <br>
+    <br>
+    <label for="last-date-available">آخرین روز فعال در تقویم:</label>
+    <br>
+    <input name="last-date-available" type="date"
+           value="{{ post['LastCalenderAvailable'].date() if post['LastCalenderAvailable'] is not none else now_time.date() }}">
+    <br>
+    <br>
+    <label for="cancel-rules">قوانین کنسلی:</label>
+    <br>
+    <input name="cancel-rules" type="text" value="{{ post['CancelRules'] }}">
+    <br>
+    <br>
+    <label for="required-docs">مدارک مورد نیاز:</label>
+    <br>
+    <input name="required-docs" type="text" value="{{ post['RequiredDocuments'] }}">
+    <br>
+    <br>
+    <label for="pets-rules">قوانین حیوانات خانگی:</label>
+    <br>
+    <input name="pets-rules" type="text" value="{{ post['PetsRules'] }}">
+    <br>
+    <br>
+    <label for="seremony-conditions">شرایط برگزاری مراسم:</label>
+    <br>
+    <input name="seremony-conditions" type="text" value="{{ post['SeremonyConditions'] }}">
+    <br>
+    <br>
+    <label for="other-rules">سایر قوانین:</label>
+    <br>
+    <input name="other-rules" type="text" value="{{ post['OtherRules'] }}">
+    <br>
+    <br>
+    <label for="host-code">کد میزبان:</label>
+    <br>
+    <input name="host-code" type="text" value="{{ post['HostCode'] }}">
+    <br>
+    <br>
+    <label for="host-name">نام میزبان:</label>
+    <br>
+    <input name="host-name" type="text" value="{{ post['HostName'] }}">
+    <br>
+    <br>
+    <label for="phone">شماره تلفن نماینده:</label>
+    <br>
+    <input type="tel" name="phone" placeholder="09123456789" pattern="09[0-9]{9}" value="0{{ post['Phone']|int }}"
+           required>
+    <br>
+    <br>
+    <label for="suggested-price">قیمت پیشنهادی:</label>
+    <br>
+    <input name="suggested-price" type="number" min="0" value="{{ post['SuggestedPrice']|int }}">
+    <br>
+    <br>
+    <label for="other-description">سایر توضیحات:</label>
+    <br>
+    <input name="other-description" type="text" value="{{ post['OtherDescriptions'] }}">
+    <br>
+    <br>
+    <div class="btn-box">
+        <input class="btn-success" type="submit" value="ثبت و ویرایش اطلاعات">
+        <input class="btn-danger" type="button" onclick="window.location.replace(' {{ url_for('index') }} ')"
+        value="لغو">
+        <button class="btn-warning" type="reset">بارگزاری مجدد</button>
+    </div>
+</form>
+
+{% endblock %}

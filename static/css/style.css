@@ -1,0 +1,349 @@
+@font-face {
+    font-family: vazir;
+    font-style: normal;
+    font-weight: 100;
+    src: url("static/fonts/vazir/Farsi-Digits-Without_Latin/Vazir-Thin-FD-WOL.eot");
+    src: url("static/fonts/vazir/Farsi-Digits-Without_Latin/Vazir-Thin-FD-WOL.woff") format("woff"),
+    url("static/fonts/vazir/Farsi-Digits-Without_Latin/Vazir-Thin-FD-WOL.ttf") format("ttf"),
+    url("static/fonts/vazir/Farsi-Digits-Without_Latin/Vazir-Thin-FD-WOL.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: vazir;
+    font-style: normal;
+    font-weight: 100;
+    src: url("../fonts/vazir/Vazir-Thin.eot");
+    src: url("../fonts/vazir/Vazir-Thin.woff") format("woff"),
+    url("../fonts/vazir/Vazir-Thin.ttf") format("ttf"),
+    url("../fonts/vazir/Vazir-Thin.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: vazir;
+    font-style: normal;
+    font-weight: 300;
+    src: url("../fonts/vazir/Vazir-Light.eot");
+    src: url("../fonts/vazir/Vazir-Light.woff") format("woff"),
+    url("../fonts/vazir/Vazir-Light.ttf") format("ttf"),
+    url("../fonts/vazir/Vazir-Light.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: vazir;
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/vazir/Vazir-Medium.eot");
+    src: url("../fonts/vazir/Vazir-Medium.woff") format("woff"),
+    url("../fonts/vazir/Vazir-Medium.ttf") format("ttf"),
+    url("../fonts/vazir/Vazir-Medium.woff2") format("woff2");
+}
+
+* {
+    font-family: vazir;
+    direction: rtl;
+}
+
+body {
+    padding: 20px 10px 50px 10px;
+}
+
+textarea {
+    width: 90vw;
+}
+
+table td {
+    padding: 2px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    min-width: 100px;
+    height: 100px;
+}
+
+table th {
+    padding: 2px;
+    border-bottom: 2px solid black;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    background-color: #2b2b2b;
+    color: whitesmoke;
+}
+
+table td:last-child,
+table th:last-child {
+    border-right: solid 2px black;
+    border-left: solid 2px black;
+    position: sticky;
+    left: 0;
+}
+
+table td:last-child:hover{
+    transform: scale(1.5);
+    z-index: 100;
+    border: 2px solid black;
+    border-radius: 5px;
+    transition-duration: 0.5s;
+    margin-left: 1px;
+    position: sticky;
+    left: 30px;
+
+}
+
+.td-img {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+.post {
+    padding: 10px;
+    margin: 5px;
+    background-color: #f3f3f3
+}
+
+nav div, .btn-login {
+    direction: rtl;
+    color: whitesmoke;
+    background-color: indianred;
+    font-size: 2em;
+    margin-left: 20px;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 50%;
+    float: left;
+}
+
+nav a {
+    direction: rtl;
+    color: whitesmoke;
+    background-color: indianred;
+    font-size: 2em;
+    margin-left: 20px;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 20px;
+}
+
+.alert {
+    padding: 20px;
+    margin: 5px;
+    color: #970020;
+    background-color: #ffd5de;
+}
+
+.content {
+    margin: 0 auto;
+    width: 90vw;
+}
+
+.table-index {
+    border: black solid 2px;
+    height: 80vh;
+    overflow: auto;
+    scrollbar-width: none;
+}
+.table-index::-webkit-scrollbar{
+    display: none;
+}
+
+.main-table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.upload__box {
+    padding: 40px;
+}
+
+.upload__inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.upload__btn {
+    display: inline-block;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    min-width: 116px;
+    padding: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid;
+    background-color: #4045ba;
+    border-color: #4045ba;
+    border-radius: 10px;
+    line-height: 26px;
+    font-size: 14px;
+}
+
+.upload__btn:hover {
+    background-color: unset;
+    color: #4045ba;
+    transition: all 0.3s ease;
+}
+
+.upload__btn-box {
+    margin-bottom: 10px;
+}
+
+.upload__img-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.upload__img-box {
+    width: 200px;
+    padding: 0 10px;
+    margin-bottom: 12px;
+}
+
+.upload__img-close {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: center;
+    line-height: 24px;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.upload__img-close:after {
+    content: "✖";
+    font-size: 14px;
+    color: white;
+}
+
+.img-bg {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    padding-bottom: 100%;
+}
+
+.close:hover,
+.close:focus {
+    color: #f44336;
+    cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: red;
+    border: 10px solid red;
+    top: 50%;
+}
+
+.cancelbtn, .deletebtn {
+    float: left;
+    width: 30%;
+    margin: 0 10%;
+}
+
+.cancelbtn:hover,.deletebtn:hover {
+    transform: scale(2);
+    z-index: 100;
+    border-radius: 5px;
+    transition-duration: 0.8s;
+}
+
+.cancelbtn {
+    background-color: white;
+    border: black 2px solid;
+    border-radius: 10px;
+    color: black;
+}
+
+.deletebtn {
+    background-color: red;
+    border: red 2px solid;
+    border-radius: 10px;
+    color: white;
+}
+
+.container {
+    padding: 16px;
+    text-align: center;
+}
+
+.form-box {
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.4);
+    width: 50%;
+    margin: 0 auto;
+}
+
+.form-header {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.form-box label, .form-box input {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.btn-reg {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}

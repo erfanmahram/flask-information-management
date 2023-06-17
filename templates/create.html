@@ -1,0 +1,411 @@
+{% extends 'base.html' %}
+
+{% block title %}ثبت ویلا{% endblock %}
+{% block content %}
+<h1>ثبت ویلای جدید</h1>
+<form method="POST" enctype="multipart/form-data">
+    <label for="title">عنوان</label>
+    <br>
+    <input size="100" type="text" name="title" placeholder="Post title"></input>
+    <br>
+    <br>
+    <label for="agent-name">نام نماینده</label>
+    <br>
+    <input size="100" type="text" name="agent-name" placeholder="نام نماینده"></input>
+    <br>
+    <br>
+    <label for="agent-phone">شماره تلفن نماینده</label>
+    <br>
+    <input type="tel" name="agent-phone" placeholder="09123456789" pattern="09[0-9]{9} + none"></input>
+    <br>
+    <br>
+    <label for="province">استان:</label>
+    <br>
+    <input name="province" type="text">
+    <br>
+    <br>
+    <label for="city">شهر:</label>
+    <br>
+    <input name="city" type="text">
+    <br>
+    <br>
+    <label for="village">روستا:</label>
+    <br>
+    <input name="village" type="text">
+    <br>
+    <br>
+    <label for="address">آدرس:</label>
+    <br>
+    <textarea name="address" placeholder="مثال: تهران - شهرک اکباتان - ساختمان 3 - واحد 5" rows="5" cols="60"></textarea>
+    <br>
+    <br>
+    <label for="floor">طبقه:</label>
+    <br>
+    <input name="floor" type="number" min="-5" max="100">
+    <br>
+    <br>
+    <label for="total-floors">تعداد کل طبقات:</label>
+    <br>
+    <input name="total-floors" type="number">
+    <br>
+    <br>
+    <label for="house-number">پلاک:</label>
+    <br>
+    <input name="house-number" type="number" min="0" max="100">
+    <br>
+    <br>
+    <label for="postal-code">کد پستی:</label>
+    <br>
+    <input name="postal-code" type="number" pattern="[0-9]{10}">
+    <br>
+    <br>
+    <label for="ownership-type">نوع مالکیت:</label>
+    <br>
+    <input name="ownership-type" type="text">
+    <br>
+    <br>
+    <label for="environment-type">بافت محیط:</label>
+    <br>
+    <input name="environment-type" type="text">
+    <br>
+    <br>
+    <label for="access-path">مسیر دسترسی:</label>
+    <br>
+    <textarea name="access-path" rows="5" cols="60"></textarea>
+    <br>
+    <br>
+    <label for="access-description">توضیحات مسیر دسترسی:</label>
+    <br>
+    <textarea name="access-description" rows="5" cols="60"></textarea>
+    <br>
+    <br>
+    <label for="neighbourhoodship">همسایگی:</label>
+    <br>
+    <input name="neighbourhoodship" type="text">
+    <br>
+    <br>
+    <label for="distance-to-places">توضیحات مسیر دسترسی:</label>
+    <br>
+    <textarea name="distance-to-places" rows="5"></textarea>
+    <br>
+    <br>
+    <label for="walls">دیوار:</label>
+    <br>
+    <input name="walls" type="text">
+    <br>
+    <br>
+    <label for="unit-area">مساحت بنا:</label>
+    <br>
+    <input name="unit-area" type="number" min="0">
+    <br>
+    <br>
+    <label for="total-area">مساحت زمین:</label>
+    <br>
+    <input name="total-area" type="number" min="0">
+    <br>
+    <br>
+    <label for="capacity">ظرفیت:</label>
+    <br>
+    <input name="capacity" type="number" min="0">
+    <br>
+    <br>
+    <label for="max-capacity">حداکثر ظرفیت:</label>
+    <br>
+    <input name="max-capacity" type="number" min="0">
+    <br>
+    <br>
+    <label for="rooms">تعداد اتاق ها:</label>
+    <br>
+    <input name="rooms" type="number" min="0">
+    <br>
+    <br>
+    <label for="sleep-services">تعداد سرویس کف خواب:</label>
+    <br>
+    <input name="sleep-services" type="number" min="0">
+    <br>
+    <br>
+    <label for="single-bed">تعداد تختخواب تک نفره:</label>
+    <br>
+    <input name="single-bed" type="number" min="0">
+    <br>
+    <br>
+    <label for="double-bed">تعداد تختخواب دو نفره:</label>
+    <br>
+    <input name="double-bed" type="number" min="0">
+    <br>
+    <br>
+    <label for="folding-sofa">تعداد مبل تختخواب شو:</label>
+    <br>
+    <input name="folding-sofa" type="number" min="0">
+    <br>
+    <br>
+    <label for="wc">تعداد سرویس بهداشتی:</label>
+    <br>
+    <input name="wc" type="number" min="0">
+    <br>
+    <br>
+    <label for="sanitary-facilities">امکانات بهداشتی:</label>
+    <br>
+    <input name="sanitary-facilities" type="text">
+    <br>
+    <br>
+    <label for="pool">استخر:</label>
+    <input name="pool" type="checkbox">
+    <label for="dry-sauna">سونا خشک:</label>
+    <input type="checkbox" name="dry-sauna">
+    <label for="wet-sauna">سونا بخار:</label>
+    <input type="checkbox" name="wet-sauna">
+    <label for="parking">پارکینگ:</label>
+    <input type="checkbox" name="parking">
+    <label for="balcony">تراس:</label>
+    <input type="checkbox" name="balcony">
+    <label for="elders-reception">امکان پذیرش سالمندان:</label>
+    <input type="checkbox" name="elders-reception">
+    <label for="disabled-reception">امکان پذیرش معلولین:</label>
+    <input type="checkbox" name="disabled-reception">
+    <label for="tv">تلویزیون:</label>
+    <input type="checkbox" name="tv">
+    <label for="digital-reciever">گیرنده دیجیتالی:</label>
+    <input type="checkbox" name="digital-reciever">
+    <label for="refrigerator">یخچال:</label>
+    <input type="checkbox" name="refrigerator">
+    <label for="oven">اجاق گاز:</label>
+    <input type="checkbox" name="oven">
+    <label for="dining-service">سرویس غذاخوری:</label>
+    <input type="checkbox" name="dining-service">
+    <label for="furniture">مبلمان:</label>
+    <input type="checkbox" name="furniture">
+    <label for="vacuum-machine">جاروبرقی:</label>
+    <input type="checkbox" name="vacuum-machine">
+    <label for="persian-toilet">توالت ایرانی:</label>
+    <input type="checkbox" name="persian-toilet">
+    <label for="toilet">توالت فرنگی:</label>
+    <input type="checkbox" name="toilet">
+    <label for="bathroom">حمام:</label>
+    <input type="checkbox" name="bathroom">
+    <label for="dining-furniture">میز و صندلی:</label>
+    <input type="checkbox" name="dining-furniture">
+    <label for="private-yard">حیاط اختصاصی:</label>
+    <input type="checkbox" name="private-yard">
+    <label for="elevator">آسانسور:</label>
+    <input type="checkbox" name="elevator">
+    <label for="evaporation-cooler">کولر آبی:</label>
+    <input type="checkbox" name="evaporation-cooler">
+    <label for="air-conditioner">کولر گازی:</label>
+    <input type="checkbox" name="air-conditioner">
+    <label for="radiator">رادیاتور:</label>
+    <input type="checkbox" name="radiator">
+    <label for="fireplace">شومینه:</label>
+    <input type="checkbox" name="fireplace">
+    <label for="freewifi">وای فای رایگان:</label>
+    <input type="checkbox" name="freewifi">
+    <label for="iron">اتو:</label>
+    <input type="checkbox" name="iron">
+    <label for="washing-machine">ماشین لباسشویی:</label>
+    <input type="checkbox" name="washing-machine">
+    <label for="jacuzzi">جکوزی:</label>
+    <input type="checkbox" name="jacuzzi">
+    <label for="microwave">مایکروویو:</label>
+    <input type="checkbox" name="microwave">
+    <label for="barbecue">باربیکیو:</label>
+    <input type="checkbox" name="barbecue">
+    <label for="bathtub">وان:</label>
+    <input type="checkbox" name="bathtub">
+    <label for="tea-maker">چای ساز:</label>
+    <input type="checkbox" name="tea-maker">
+    <label for="boardgame">بازی فکری:</label>
+    <input type="checkbox" name="boardgame">
+    <label for="pingpong">پینگ پونگ:</label>
+    <input type="checkbox" name="pingpong">
+    <label for="sound-system">سیستم صوتی:</label>
+    <input type="checkbox" name="sound-system">
+    <label for="billiards">بیلیارد:</label>
+    <input type="checkbox" name="billiards">
+    <label for="table-football">فوتبال دستی:</label>
+    <input type="checkbox" name="table-football">
+    <label for="game-console">کنسول بازی:</label>
+    <input type="checkbox" name="game-console">
+    <label for="cctv">دوربین مدار بسته:</label>
+    <input type="checkbox" name="cctv">
+    <label for="bed">تخت خواب:</label>
+    <input type="checkbox" name="bed">
+    <label for="porch">ایوان:</label>
+    <input type="checkbox" name="porch">
+    <label for="kids-pool">استخر کودکان:</label>
+    <input type="checkbox" name="kids-pool">
+    <label for="cold-water-pool">حوضچه آبسرد:</label>
+    <input type="checkbox" name="cold-water-pool">
+    <label for="air-hockey">ایر هاکی:</label>
+    <input type="checkbox" name="air-hockey">
+    <label for="jacuzzi-tub">وان جکوزی:</label>
+    <input type="checkbox" name="jacuzzi-tub">
+    <label for="pets">امکان ورود حیوانات خانگی:</label>
+    <input type="checkbox" name="pets">
+    <label for="seremony">امکان برگزاری مراسم:</label>
+    <input type="checkbox" name="seremony">
+    <label for="mci-anten">آنتن همراه اول:</label>
+    <input type="checkbox" name="mci-anten">
+    <label for="irancell-anten">آنتن ایرانسل:</label>
+    <input type="checkbox" name="irancell-anten">
+    <label for="mci-net">اینترنت همراه اول:</label>
+    <input type="checkbox" name="mci-net">
+    <label for="irancell-net">اینترنت ایرانسل:</label>
+    <input type="checkbox" name="irancell-net">
+    <br>
+    <br>
+    <label for="hall-facilities">امکانات اتاق پذیرایی:</label>
+    <br>
+    <input name="hall-facilities" type="text">
+    <br>
+    <br>
+    <label for="hall-heater">سیستم گرمایشی اتاق پذیرایی:</label>
+    <br>
+    <input name="hall-heater" type="text">
+    <br>
+    <br>
+    <label for="hall-cooler">سیستم سرمایشی اتاق پذیرایی:</label>
+    <br>
+    <input name="hall-cooler" type="text">
+    <br>
+    <br>
+    <label for="room-heater">سیستم گرمایشی اتاق ها:</label>
+    <br>
+    <input name="room-heater" type="text">
+    <br>
+    <br>
+    <label for="room-cooler">سیستم سرمایشی اتاق ها:</label>
+    <br>
+    <input name="room-cooler" type="text">
+    <br>
+    <br>
+    <label for="yard">حیاط:</label>
+    <br>
+    <input name="yard" type="text">
+    <br>
+    <br>
+    <label for="garden">باغ:</label>
+    <br>
+    <input name="garden" type="text">
+    <br>
+    <br>
+    <label for="garden-facilities">امکانات باغ:</label>
+    <br>
+    <input name="garden-facilities" type="text">
+    <br>
+    <br>
+    <label for="garden-description">توضیحات باغ:</label>
+    <br>
+    <input name="garden-description" type="text">
+    <br>
+    <br>
+    <label for="view">چشم انداز اقامتگاه (ویو اقامتگاه):</label>
+    <br>
+    <input name="view" type="text">
+    <br>
+    <br>
+    <label for="prosperity-facilities">امکانات رفاهی:</label>
+    <br>
+    <input name="prosperity-facilities" type="text">
+    <br>
+    <br>
+    <label for="joy-facilities">امکانات سرگرمی:</label>
+    <br>
+    <input name="joy-facilities" type="text">
+    <br>
+    <br>
+    <label for="cooking-facilities">امکانات پخت و پز:</label>
+    <br>
+    <input name="cooking-facilities" type="text">
+    <br>
+    <br>
+    <label for="dishes">سرو غذا و نوشیدنی (تعداد و توضیحات ظروف):</label>
+    <br>
+    <input name="dishes" type="text">
+    <br>
+    <br>
+    <label for="entrance-steps">تعداد پله های ورودی:</label>
+    <br>
+    <input name="entrance-steps" type="number" min="0">
+    <br>
+    <br>
+    <label for="enter-hour">ساعت ورود: </label>
+    <input name="enter-hour" type="time">
+    <br>
+    <label for="exit-hour">ساعت خروج: </label>
+    <input name="exit-hour" type="time">
+    <br>
+    <br>
+    <label for="min-stay">حداقل مدت اقامت:</label>
+    <br>
+    <input name="min-stay" type="text">
+    <br>
+    <br>
+    <label for="max-stay">حداکثر مدت اقامت:</label>
+    <br>
+    <input name="max-stay" type="text">
+    <br>
+    <br>
+    <label for="last-date-available">آخرین روز فعال در تقویم:</label>
+    <br>
+    <input name="last-date-available" type="date" value="{{ now_time.date() }}">
+    <br>
+    <br>
+    <label for="cancel-rules">قوانین کنسلی:</label>
+    <br>
+    <input name="cancel-rules" type="text">
+    <br>
+    <br>
+    <label for="required-docs">مدارک مورد نیاز:</label>
+    <br>
+    <input name="required-docs" type="text">
+    <br>
+    <br>
+    <label for="pets-rules">قوانین حیوانات خانگی:</label>
+    <br>
+    <input name="pets-rules" type="text">
+    <br>
+    <br>
+    <label for="seremony-conditions">شرایط برگزاری مراسم:</label>
+    <br>
+    <input name="seremony-conditions" type="text">
+    <br>
+    <br>
+    <label for="other-rules">سایر قوانین:</label>
+    <br>
+    <input name="other-rules" type="text">
+    <br>
+    <br>
+    <label for="host-code">کد میزبان:</label>
+    <br>
+    <input name="host-code" type="text">
+    <br>
+    <br>
+    <label for="host-name">نام میزبان:</label>
+    <br>
+    <input name="host-name" type="text">
+    <br>
+    <br>
+    <label for="phone">شماره تلفن نماینده:</label>
+    <br>
+    <input type="tel" name="phone" placeholder="09123456789" pattern="09[0-9]{9}" required>
+    <br>
+    <br>
+    <label for="suggested-price">قیمت پیشنهادی:</label>
+    <br>
+    <input name="suggested-price" type="number" min="0">
+    <br>
+    <br>
+    <label for="other-description">سایر توضیحات:</label>
+    <br>
+    <input name="other-description" type="text">
+    <br>
+    <br>
+    <div class="btn-box">
+        <input class="btn-success" type="submit" value="ثبت اطلاعات">
+        <input class="btn-danger" type="button" onclick="window.location.replace(' {{ url_for('index') }} ')"
+        value="لغو">
+        <button class="btn-warning" type="reset">بارگزاری مجدد</button>
+    </div>
+</form>
+
+{% endblock %}

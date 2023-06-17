@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+
+{% block title %}جدول ویلاها{% endblock %}
+{% block content %}
+{% set name_dict = {'Id': 'ردیف(Id)', 'AgentName': 'نام نماینده', 'AgentPhone': 'شماره تلفن نماینده',
+            'UnitArea': 'مساحت واحد', 'TotalArea': 'مساحت زمین', 'DrySauna': 'سونا خشک', 'DisabledReception': 'امکان
+            پذیرش معلولین', 'TV': 'تلویزیون', 'DigitalReciever': 'گیرنده دیجیتال', 'Refrigerator': 'یخچال', 'Oven':
+            'اجاق گاز', 'DiningService': 'سرویس غذاخوری', 'Furniture': 'مبلمان', 'VacuumMachine': 'جاروبرقی',
+            'PersianToilet': 'توالت ایرانی', 'Toilet': 'توالت فرنگی', 'Bathroom': 'حمام', 'DiningFurniture': 'میز و
+            صندلی', 'PrivateYard': 'حیاط اختصاصی', 'Elevator': 'آسانسور', 'EvaporativeCooler': 'کولر آبی',
+            'AirConditioner': 'کولر گازی', 'Radiator': 'شوفاژ', 'Fireplace': 'شومینه', 'FreeWifi': 'وای فای رایگان',
+            'Iron': 'اتو', 'WashingMachine': 'ماشین لباسشویی', 'Jacuzzi': 'جکوزی', 'Microwave': 'مایکروویو', 'Barbecue':
+            'باربیکیو', 'Bathtub': 'وان', 'TeaMaker': 'چای ساز', 'BoardGame': 'بازی فکری', 'PingPong': 'پینگ پونگ',
+            'SoundSystem': 'سیستم صوتی', 'Billiards': 'بیلیارد', 'TableFootball': 'فوتبال دستی', 'GameConsole': 'کنسول
+            بازی', 'CCTV': 'دوربین مدار بسته', 'Bed': 'تخت خواب', 'Porch': 'ایوان', 'KidsPool': 'استخر کودکان',
+            'ColdWaterPool': 'حوضچه آبسرد', 'AirHockey': 'ایر هاکی', 'JacuzziTub': 'وان جکوزی', 'Pets': 'امکان ورود
+            حیوانات خانگی', 'Seremony': 'امکان برگزاری مراسم', 'MCIAnten': 'آنتن دهی همراه اول', 'IrancellAnten': 'آنتن
+            دهی ایرانسل', 'MCINet': 'اینترنت همراه اول', 'IrancellNet': 'اینترنت ایرانسل', 'HostName': 'نام میزبان',
+            'SuggestedPrice': 'قیمت پیشنهادی', 'OtherDescriptions': 'توضیحات اضافه', 'Title': 'عنوان', 'Phone': 'تلفن',
+            'Media': 'تصاویر', 'Province': 'استان', 'City': 'شهر', 'Village': 'روستا', 'Address': 'آدرس',
+            'Floor': 'طبقه', 'HouseNumber': 'پلاک', 'PostalCode':'کد پستی', 'OwnershipType': 'نوع مالکیت',
+            'EnvironmentType': 'بافت محیط', 'AccessPath': 'مسیر دسترسی', 'AccessDescription': 'توضیحات مسیر دسترسی',
+            'NeighbourhoodShip': 'همسایگی', 'DistanceToPlaces': 'فاصله از مکانها', 'Walls': 'نوع دیوارها',
+            'Capacity': 'ظرفیت', 'MaxCapacity': 'حداکثر ظرفیت', 'Rooms': 'تعداد اتاقها',
+            'SleepServices': 'تعداد سرویس کف خواب', 'SingleBed': 'تعداد تختخواب تک نفره', 'DoubleBed': 'تعداد تختخواب دو
+            نفره', 'FoldingSofa': 'تعداد مبل تختخواب شو', 'WCQuantity': 'تعداد سرویس بهداشتی', 'SanitaryFacilities':
+            'امکانات بهداشتی', 'Pool': 'استخر', 'WetSauna': 'سونا بخار', 'Parking': 'پارکینگ', 'Balcony': 'تراس',
+            'EldersReception': 'امکان پذیرش سالمندان', 'HallFacilities': 'امکانات اتاق پذیرایی',
+            'HallHeater': 'سیستم گرمایشی اتاق پذیرایی', 'HallCooler': 'سیستم سرمایشی اتاق پذیرایی',
+            'RoomHeater': 'سیستم گرمایشی اتاق ها', 'RoomCooler': 'سیستم سرمایشی اتاق ها', 'Yard': 'حیاط',
+            'Garden': 'باغ', 'GardenFacilities': 'امکانات باغ', 'GardenDescription': 'توضیحات باغ', 'View': 'ویو
+            اقامتگاه',
+            'ProsperityFacilities': 'امکانات رفاهی', 'JoyFacilities': 'امکانات سرگرمی', 'CookingFacilities': 'امکانات
+            پخت و پز',
+            'Dishes': 'سرو غذا و نوشیدنی', 'EntranceSteps': 'تعداد پله های ورودی', 'EnterHour': 'ساعت ورود',
+            'ExitHour': 'ساعت خروج', 'MinStay': 'حداقل مدت اقامت', 'MaxStay': 'حداکثر مدت اقامت',
+            'LastCalenderAvailable': 'آخرین روز فعال در تقویم', 'CancelRules': 'قوانین کنسلی', 'RequiredDocuments':
+            'مدارک مورد نیاز',
+            'PetsRules': 'قوانین حیوانات خانگی', 'SeremonyConditions': 'شرایط برگزاری مراسم', 'OtherRules': 'سایر
+            قوانین',
+            'HostCode': 'کد میزبان', 'TotalFloors': 'تعداد کل طبقات'} %}
+<!--<div class="sort-box">-->
+<!--    <form method="POST">-->
+<!--        <label for="sort-files">مرتب سازی بر اساس: </label>-->
+<!--        <select name="sort-files">-->
+<!--            {% for header in column_names %}-->
+<!--            {% if header != 'LastUpdate' %}-->
+<!--            <option>{{ name_dict[header] }}</option>-->
+<!--            {% endif %}-->
+<!--            {% endfor %}-->
+<!--        </select>-->
+<!--        <label for="sort-order">ترتیب مرتب سازی: </label>-->
+<!--        <select name="sort-order">-->
+<!--            <option value="صعودی">صعودی</option>-->
+<!--            <option value="نزولی">نزولی</option>-->
+<!--        </select>-->
+<!--        <label for="page-rows">تعداد ردیف در هر صفحه: </label>-->
+<!--        <select name="page-rows">-->
+<!--            <option value="10">10</option>-->
+<!--            <option value="25">25</option>-->
+<!--            <option value="50">50</option>-->
+<!--            <option value="100">100</option>-->
+<!--        </select>-->
+<!--        <input class="btn-info" type="submit" value="اعمال فیلتر">-->
+<!--    </form>-->
+<!--</div>-->
+<div class="table-index">
+    <table class="main-table">
+        <tr>
+            {% for header in column_names %}
+            {% if header != 'LastUpdate' %}
+            <th>{{ name_dict[header] }}</th>
+            {% endif %}
+            {% endfor %}
+            <th>ویرایش</th>
+        </tr>
+        {% for post in posts %}
+        <tr>
+            {% for cell in column_names %}
+            {% if cell == 'Media' %}
+            <td rowspan="3">
+                {% set list1 = post['Media'] %}
+                <div id="carouselExampleControls{{ post['Id'] }}" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        {% if list1[0]|length > 0 %}
+                        {% for img in list1 %}
+                        <div class="center carousel-item {% if loop.index == 1 %} active{% endif %}">
+                            {% if '.mp4' in img %}
+                            <video controls>
+                                <source src="{{url_for('static', filename=img)}}" type="video/mp4">
+                            </video>
+                            {% else %}
+                            <img class="td-img" src="{{url_for('static', filename=img)}}"
+                                 alt="{{url_for('static', filename=img)}}">
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <p>عکسی وجود ندارد!</p>
+                        {% endif %}
+                    </div>
+                    {% if post['Media']|length > 1 %}
+                    <a class="carousel-control-prev" href="#carouselExampleControls{{ post['Id'] }}" role="button"
+                       data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleControls{{ post['Id'] }}" role="button"
+                       data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only"></span>
+                    </a>
+                    {% endif %}
+                </div>
+            </td>
+            {% elif cell != 'LastUpdate' and post[cell] is not boolean %}
+            {% if post[cell] == none %}
+            <td rowspan="3"></td>
+            {% else %}
+            <td rowspan="3">{{ post[cell] }}</td>
+            {% endif %}
+            {% elif cell != 'LastUpdate' and post[cell] == True %}
+            <td rowspan="3">دارد</td>
+            {% elif cell != 'LastUpdate' and post[cell] == False %}
+            <td rowspan="3">ندارد</td>
+            {% elif cell != 'LastUpdate' and post[cell] == None %}
+            <td rowspan="3">{{ post[cell] }}</td>
+            {% endif %}
+            {% endfor %}
+            <td style="background-color: #985f0d">
+                <a style="font-size: small;color: white;text-decoration: none;" class="bi bi-pencil-square"
+                       href="{{ url_for('edit', id=post['Id']) }}" target="_blank"><br>ویرایش اطلاعات</a></td>
+        </tr>
+        <tr><td style="background-color: #5e35b1">
+                <a style="font-size: small;color: white;text-decoration: none;" class="bi bi-file-earmark-image"
+                   href="{{ url_for('upload_image', id=post['Id']) }}" target="_blank"><br>آپلود عکس</a></td>
+        </tr>
+        <tr><td style="background-color:red;">
+                <a style="font-size: small;background-color:red;color: white;text-decoration: none;"
+                   onclick="document.getElementById('id{{ post['Id'] }}').style.display='block'"
+                   class="bi bi-trash" href="#"><br>حذف</a></td>
+        </tr>
+        <div id="id{{ post['Id'] }}" class="modal">
+            <div class="modal-content">
+                <div class="container">
+                    <p>آیا از حذف این آیتم ({{ post['Id'] }}) اطمینان دارید؟</p>
+                    <div class="clearfix">
+                        <button type="button"
+                                onclick="document.getElementById('id{{ post['Id'] }}').style.display='none'"
+                                class="cancelbtn">لغو
+                        </button>
+                        <button type="button"
+                                onclick="window.location.href='{{ url_for('delete_post', id=post['Id']) }}'"
+                                class="deletebtn">حذف
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </table>
+</div>
+<div class="text-right" style="text-align: center; margin: 10px auto;">
+    <a href="{{ url_for('index', page=posts.prev_num) }}"
+       class="btn btn-outline-dark
+       {% if posts.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </a><!-- Loop through the number of pages to display a link for each-->
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}{% if page_num
+    %}
+    <!-- Check for the active page and set the link to "Active"-->
+    {% if posts.page == page_num %}
+    <a href="{{ url_for('index', page=page_num) }}"
+       class="btn btn-dark">
+        {{ page_num }}
+    </a>
+    {% else %}
+    <a href="{{ url_for('index', page=page_num) }}"
+       class="btn btn-outline-dark">
+        {{ page_num }}
+    </a>
+    {% endif %}
+    {% else %}
+    ...
+    {% endif %}
+    {% endfor %} <a href="{{ url_for('index', page=posts.next_num) }}"
+                    class="btn btn-outline-dark
+       {% if posts.page == posts.pages %}disabled{% endif %}">
+    &raquo;
+</a>
+</div>
+
+<script>// Get the modal
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+{% endblock %}
+

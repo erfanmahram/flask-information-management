@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}ورود{% endblock %}
+{% block content %}
+<div class="form-box">
+<h1 class="form-header">ورود به حساب کاربری</h1>
+<br>
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+{% if 'Not Right' in message %}
+<div class="alert alert-{{ category }}" role="alert">
+    {{ message|replace('Not Right: ', '') }}
+</div>
+{% elif 'Approve Email' in message %}
+<div class="alert alert-{{ category }}" role="alert">
+    {{ message|replace('Approve Email: ', '') }}
+</div>
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endwith %}
+    <form method="post">
+        <label for="username">نام کاربری:</label>
+        <input type="text" name="username"/>
+        <br>
+        <br>
+        <label for="password">رمز عبور:</label>
+        <input type="password" name="password"/>
+        <br>
+        <br>
+        <hr style="border-radius:20px; opacity: 1; width:70%; margin: 0 auto; height:5px; color:black; background-color:black">
+        <br>
+        <br>
+        <button type="submit" class="btn-reg btn-success">ورود</button>
+        <br>
+    </form>
+</div>
+{% endblock %}
